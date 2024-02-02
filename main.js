@@ -9,10 +9,14 @@ let CountriesData = {
 CountrySelectBox.addEventListener('change' , function(){
     let mainCountryName = CountrySelectBox.value 
     let mainCountryCities = CountriesData[mainCountryName];
-    // reset select City
-    CitySelectBox.innerHTML = ""
-    
-    mainCountryCities.forEach(function(city) {
-        CitySelectBox.innerHTML += "<option>"+ city +"</option>" 
-    });
+    // please select = undefined => Error in Console :: FiX ::
+    if(mainCountryName == "Please Select"){
+        CitySelectBox.innerHTML = ""
+        CitySelectBox.innerHTML = "<option>Select City</option>" 
+    }else{
+        CitySelectBox.innerHTML = ""
+        mainCountryCities.forEach(function(city) {
+            CitySelectBox.innerHTML += "<option>"+ city +"</option>" 
+        });
+    }
 })
